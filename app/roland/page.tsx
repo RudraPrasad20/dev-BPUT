@@ -112,7 +112,7 @@ const StudentList = () => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/data${
+          `https://dev-bput.vercel.app/api/data${
             selectedSemester !== null ? `?semester=${selectedSemester}` : ""
           }`
         );
