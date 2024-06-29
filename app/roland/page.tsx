@@ -33,7 +33,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import SemesterSelect from "@/components/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 type Student = {
@@ -106,15 +105,12 @@ const StudentList = () => {
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 40 });
-  const [selectedSemester, setSelectedSemester] = useState<number | null>(1);
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          `https://dev-bput.vercel.app/api/data${
-            selectedSemester !== null ? `?semester=${selectedSemester}` : ""
-          }`
+          'https://dev-bput.vercel.app/api/data'
         );
         setStudents(response.data);
       } catch (error) {
@@ -123,7 +119,7 @@ const StudentList = () => {
     };
 
     fetchStudents();
-  }, [selectedSemester]);
+  }, []);
 
   const table = useReactTable({
     data: students,
@@ -181,10 +177,6 @@ const StudentList = () => {
               ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <SemesterSelect
-          selectedSemester={selectedSemester}
-          setSelectedSemester={setSelectedSemester}
-        />
       </div>
       <div className="rounded-md border">
         <Table>
