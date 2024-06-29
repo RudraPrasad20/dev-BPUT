@@ -1,20 +1,15 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const semester = url.searchParams.get("semester");
-
+export async function GET() {
   try {
-    const students = semester
-      ? await db.roland.findMany({ where: { semester: parseInt(semester) } })
-      : await db.roland.findMany();
-
+    const students = await db.roland.findMany();
     return NextResponse.json(students);
   } catch (error) {
+    console.error("Error fetching students:", error); // Add more logging here
     return NextResponse.json(
       { message: "Something went wrong" },
-      { status: 401 }
+      { status: 500 }
     );
   }
 }
