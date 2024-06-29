@@ -20,5 +20,4 @@ model Roland {
   sgpa String
   branch String
   subjects String[]
-  semester Int
 }
