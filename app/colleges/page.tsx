@@ -4,14 +4,13 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const Colleges = () => {
   const router = useRouter();
   return (
     <div className="flex justify-center gap-5">
@@ -33,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Colleges;
