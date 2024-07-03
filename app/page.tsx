@@ -13,7 +13,7 @@ const page = () => {
         This is under development, stay tuned... will be adding more feture very
         soon
       </p>
-      <Link href={"/roland"} className=" text-3xl border-b-2 underline bg-slate-300">Explore</Link>
+      <Link href={"/colleges"} className=" text-3xl border-b-2 underline bg-slate-300">Explore</Link>
     </div>
   );
 };
