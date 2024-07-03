@@ -10,14 +10,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") // replace this with your Neon DB connection string
+  url      = env("DATABASE_URL")
 }
 
 model Roland {
-  id Int @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   studentName String
-  rollNo  String
-  sgpa String
-  branch String
-  subjects String[]
+  rollNo      String
+  branch      String
+  sgpa        String
+  subjects    String[]
+  year        String
+  semester    Int
+
 }

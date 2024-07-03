@@ -1,42 +1,49 @@
-import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+// import { db } from "@/lib/db";
+// import { NextResponse } from "next/server";
 
-export async function GET() {
+// export async function GET() {
+//   try {
+//     const students = await db.roland.findMany();
+//     return NextResponse.json(students);
+//   } catch (error) {
+//     console.error("Error fetching students:", error); // Add more logging here
+//     return NextResponse.json(
+//       { message: "Something went wrong" },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+
+import { db } from "@/lib/db";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const semIdParam = searchParams.get("semId");
+  const semesterId = parseInt(semIdParam ?? '');
+
+  if (isNaN(semesterId)) {
+    return NextResponse.json(
+      { message: "Invalid semester ID" },
+      { status: 400 }
+    );
+  }
+
   try {
-    const students = await db.roland.findMany();
+    const students = await db.roland.findMany({
+      where: {
+        semester: semesterId,
+      },
+    });
     return NextResponse.json(students);
   } catch (error) {
-    console.error("Error fetching students:", error); // Add more logging here
+    console.error("Error fetching students:", error);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }
     );
   }
 }
-
-// export async function GET() {
-//   try {
-//     // Log to check if the API route is being hit
-//     console.log('API route hit');
-
-//     // Find a unique collagename
-//     const result = await db.data.findFirst({
-//       select: {
-//         collegeName: true
-//       }
-//     });
-
-//     if (result) {
-//       console.log('Collagename fetched:', result.collageName);
-//       res.status(200).json({ collagename: result.collageName });
-//     } else {
-//       console.log('No collagename found');
-//       res.status(404).json({ error: 'Collagename not found' });
-//     }
-//   } catch (error) {
-//     console.error('Error fetching collagename:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   } finally {
-//     await db.$disconnect();
-//   }
-// };
