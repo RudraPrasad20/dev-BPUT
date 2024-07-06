@@ -16,15 +16,29 @@ const Colleges = () => {
     <div className="grid justify-between gap-5 grid-cols-1 sm:grid-cols-2">
       <Card className="hover:shadow-lg">
         <CardHeader>
-          <CardTitle>ROLAND INSTITUTE OF TECHNOLOGY</CardTitle>
+          <CardTitle>ROLAND INSTITUTE OF TECHNOLOGY, BERHAMPUR</CardTitle>
           <p>2023</p>
         </CardHeader>
         <CardContent className="flex gap-2">
-        
           <Button onClick={() => router.push("/colleges/roland/1")}>
             SEM 1
           </Button>
           <Button onClick={() => router.push("/colleges/roland/2")}>
+            SEM 2
+          </Button>
+        </CardContent>
+      </Card>
+      <Card className="hover:shadow-lg">
+        <CardHeader>
+          <CardTitle>VIGNAN INSTITUTE OF TECHNOLOGY, BERHAMPUR</CardTitle>
+          <p>2023</p>
+        </CardHeader>
+        <CardContent className="flex gap-2">
+        
+          <Button onClick={() => router.push("/colleges/vignan/1")}>
+            SEM 1
+          </Button>
+          <Button onClick={() => router.push("/colleges/vignan/2")}>
             SEM 2
           </Button>
         </CardContent>

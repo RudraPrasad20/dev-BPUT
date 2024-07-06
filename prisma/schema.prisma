@@ -24,3 +24,14 @@ model Roland {
   semester    Int
 
 }
+model Vignan {
+  id          Int        @id @default(autoincrement())
+  studentName String
+  rollNo      String
+  branch      String
+  sgpa        String
+  subjects    String[]
+  year        String
+  semester    Int
+
+}

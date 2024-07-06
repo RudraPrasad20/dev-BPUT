@@ -99,8 +99,9 @@ const columns: ColumnDef<Student>[] = [
   },
 ];
 
-export default function StudentList({ params }: { params: { semId: string } }) {
-  const semesterId = parseInt(params.semId, 10);
+export default function StudentList({ params }: { params: { college: string, semId: string } }) {
+  const { college, semId } = params;
+  const semesterId = parseInt(semId, 10);
   const [students, setStudents] = useState<Student[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -115,7 +116,7 @@ export default function StudentList({ params }: { params: { semId: string } }) {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`/api/data?semId=${semesterId}`);
+        const response = await axios.get(`/api/data/${college}?semId=${semesterId}`);
         setStudents(response.data);
       } catch (error) {
         console.error("Error fetching students:", error);
@@ -123,7 +124,7 @@ export default function StudentList({ params }: { params: { semId: string } }) {
     };
 
     fetchStudents();
-  }, [semesterId]);
+  }, [college, semesterId]);
 
   const table = useReactTable({
     data: students,
