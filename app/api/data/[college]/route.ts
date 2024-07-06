@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: NextRequest, { params }: { params: { college: string } }) {
   const { searchParams } = new URL(req.url);
   const semIdParam = searchParams.get("semId");
   const semesterId = parseInt(semIdParam ?? '');
@@ -13,8 +13,25 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  const { college } = params;
+
+  const modelMap: Record<string, any> = {
+    roland: db.roland,
+    vignan: db.vignan,
+
+  };
+
+  const model = modelMap[college];
+
+  if (!model) {
+    return NextResponse.json(
+      { message: "Invalid college path" },
+      { status: 400 }
+    );
+  }
+
   try {
-    const students = await db.roland.findMany({
+    const students = await model.findMany({
       where: {
         semester: semesterId,
       },
