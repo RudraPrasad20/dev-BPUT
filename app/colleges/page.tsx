@@ -1,14 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const Colleges = () => {
   const router = useRouter();
@@ -34,11 +27,24 @@ const Colleges = () => {
           <p>2023</p>
         </CardHeader>
         <CardContent className="flex gap-2">
-        
           <Button onClick={() => router.push("/colleges/vignan/1")}>
             SEM 1
           </Button>
           <Button onClick={() => router.push("/colleges/vignan/2")}>
+            SEM 2
+          </Button>
+        </CardContent>
+      </Card>
+      <Card className="hover:shadow-lg">
+        <CardHeader>
+          <CardTitle>KALAM INSTITUTE OF TECHNOLOGY, BERHAMPUR</CardTitle>
+          <p>2023</p>
+        </CardHeader>
+        <CardContent className="flex gap-2">
+          <Button onClick={() => router.push("/colleges/kalam/1")}>
+            SEM 1
+          </Button>
+          <Button onClick={() => router.push("/colleges/kalam/2")}>
             SEM 2
           </Button>
         </CardContent>

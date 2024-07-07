@@ -1,10 +1,13 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { college: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { college: string } }
+) {
   const { searchParams } = new URL(req.url);
   const semIdParam = searchParams.get("semId");
-  const semesterId = parseInt(semIdParam ?? '');
+  const semesterId = parseInt(semIdParam ?? "");
 
   if (isNaN(semesterId)) {
     return NextResponse.json(
@@ -18,7 +21,7 @@ export async function GET(req: NextRequest, { params }: { params: { college: str
   const modelMap: Record<string, any> = {
     roland: db.roland,
     vignan: db.vignan,
-
+    kalam: db.kalam,
   };
 
   const model = modelMap[college];

@@ -35,3 +35,14 @@ model Vignan {
   semester    Int
 
 }
+model Kalam {
+  id          Int        @id @default(autoincrement())
+  studentName String
+  rollNo      String
+  branch      String
+  sgpa        String
+  subjects    String[]
+  year        String
+  semester    Int
+
+}
